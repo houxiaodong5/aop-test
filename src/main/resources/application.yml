@@ -1,0 +1,12 @@
+hello:
+  msg: ass
+
+es:
+  host: 127.0.0.1
+  username: test
+  password: 123
+  port: 6379
+oss:
+  endpoint: http://oss-cn-beijing.aliyuncs.com
+  accessKeyId: asdada
+  accessKeySecret: dadadadad
