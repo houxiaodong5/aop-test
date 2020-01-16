@@ -9,6 +9,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -27,7 +28,8 @@ public class LogAspect {
      *  定义切入点
      * */
 
-    @Pointcut("execution(* com.hxd.aoptest..*.*(..))")
+    //@Pointcut("execution(* com.hxd.aoptest..*.*(..))")
+    @Pointcut("execution(* com.hxd.aoptest.controller.*.*(..))")
     public void pointcup(){}
 
     /**
@@ -52,9 +54,14 @@ public class LogAspect {
      *  后置通知
      *
      * */
-    @AfterReturning(pointcut = "pointcup()",returning = "obj")
-    public void doAfter(Object obj)throws Throwable{
-        logger.info("RESPONSE："+ JSON.toJSONString(obj));
+    @AfterReturning(pointcut = "pointcup()",returning = "rst")
+    public void doAfter(ResponseEntity rst)throws Throwable{
+        String result = JSON.toJSONString(rst.getBody());
+        if(result.length()<=100){
+            logger.info("RESPONSE："+ result);
+        }
+
+        logger.info("RESPONSE CODE："+rst.getStatusCode().toString());
     }
 
 

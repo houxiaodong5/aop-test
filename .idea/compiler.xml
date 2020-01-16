@@ -11,8 +11,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aop-test" target="1.8" />
-      <module name="mystarter" target="1.8" />
-      <module name="mystater" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

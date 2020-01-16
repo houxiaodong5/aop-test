@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hxd.aoptest.dao.ImgMapper" >
+  <resultMap id="BaseResultMap" type="com.hxd.aoptest.model.Img" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="camera" property="camera" jdbcType="VARCHAR" />
+    <result column="utc_create_time" property="utcCreateTime" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="photo_name" property="photoName" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="cover_url" property="coverUrl" jdbcType="VARCHAR" />
+    <result column="rksj" property="rksj" jdbcType="TIMESTAMP" />
+    <result column="cover_url_local" property="coverUrlLocal" jdbcType="VARCHAR" />
+    <result column="small_url_local" property="smallUrlLocal" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hxd.aoptest.model.Img" extends="BaseResultMap" >
+    <result column="des" property="des" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, camera, utc_create_time, create_time, image_url, photo_name, author, country, 
+    cover_url, rksj, cover_url_local, small_url_local
+  </sql>
+  <sql id="Blob_Column_List" >
+    des
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from 20191129_img
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from 20191129_img
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.hxd.aoptest.model.Img" >
+    insert into 20191129_img (id, camera, utc_create_time, 
+      create_time, image_url, photo_name, 
+      author, country, cover_url, 
+      rksj, cover_url_local, small_url_local, 
+      des)
+    values (#{id,jdbcType=BIGINT}, #{camera,jdbcType=VARCHAR}, #{utcCreateTime,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{imageUrl,jdbcType=VARCHAR}, #{photoName,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{coverUrl,jdbcType=VARCHAR}, 
+      #{rksj,jdbcType=TIMESTAMP}, #{coverUrlLocal,jdbcType=VARCHAR}, #{smallUrlLocal,jdbcType=VARCHAR}, 
+      #{des,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxd.aoptest.model.Img" >
+    insert into 20191129_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="camera != null" >
+        camera,
+      </if>
+      <if test="utcCreateTime != null" >
+        utc_create_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="photoName != null" >
+        photo_name,
+      </if>
+      <if test="author != null" >
+        author,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="coverUrl != null" >
+        cover_url,
+      </if>
+      <if test="rksj != null" >
+        rksj,
+      </if>
+      <if test="coverUrlLocal != null" >
+        cover_url_local,
+      </if>
+      <if test="smallUrlLocal != null" >
+        small_url_local,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="camera != null" >
+        #{camera,jdbcType=VARCHAR},
+      </if>
+      <if test="utcCreateTime != null" >
+        #{utcCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photoName != null" >
+        #{photoName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null" >
+        #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="rksj != null" >
+        #{rksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coverUrlLocal != null" >
+        #{coverUrlLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="smallUrlLocal != null" >
+        #{smallUrlLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxd.aoptest.model.Img" >
+    update 20191129_img
+    <set >
+      <if test="camera != null" >
+        camera = #{camera,jdbcType=VARCHAR},
+      </if>
+      <if test="utcCreateTime != null" >
+        utc_create_time = #{utcCreateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photoName != null" >
+        photo_name = #{photoName,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="coverUrl != null" >
+        cover_url = #{coverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="rksj != null" >
+        rksj = #{rksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coverUrlLocal != null" >
+        cover_url_local = #{coverUrlLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="smallUrlLocal != null" >
+        small_url_local = #{smallUrlLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hxd.aoptest.model.Img" >
+    update 20191129_img
+    set camera = #{camera,jdbcType=VARCHAR},
+      utc_create_time = #{utcCreateTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      photo_name = #{photoName,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      rksj = #{rksj,jdbcType=TIMESTAMP},
+      cover_url_local = #{coverUrlLocal,jdbcType=VARCHAR},
+      small_url_local = #{smallUrlLocal,jdbcType=VARCHAR},
+      des = #{des,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxd.aoptest.model.Img" >
+    update 20191129_img
+    set camera = #{camera,jdbcType=VARCHAR},
+      utc_create_time = #{utcCreateTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      photo_name = #{photoName,jdbcType=VARCHAR},
+      author = #{author,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      cover_url = #{coverUrl,jdbcType=VARCHAR},
+      rksj = #{rksj,jdbcType=TIMESTAMP},
+      cover_url_local = #{coverUrlLocal,jdbcType=VARCHAR},
+      small_url_local = #{smallUrlLocal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="queryAllImg" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from 20191129_img order by id
+  </select>
+
+
+</mapper>
